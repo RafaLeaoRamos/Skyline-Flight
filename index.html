@@ -207,7 +207,7 @@ function drawBird(b){const wg=Math.sin(t*17+b.ph)*8;ctx.save();ctx.translate(b.x
 function spawnHunter(x,y,lane,ace=false){jets.push({x,y,vx:0,vy:0,angle:0,lane,age:0,ace,gp:0,curG:null,ph:rand(0,6),think:rand(.04,.14),flapCd:rand(.05,.24),mistake:rand(-24,24),burst:0})}
 function hunterBonus(v,x,y,label){setScore(score+v);floats.push({t:'+'+v+' · '+label,x,y,c:'#ffb18a',l:1.8,m:1.8,s:1.1});sfx('coin')}
 function updateHunters(dt){
- for(let i=jets.length-1;i>=0;i--){const j=jets[i];j.age+=dt;const ace=j.ace&&hunterEscalation,speedCap=ace?1450:hunterEscalation?1050:260,acc=ace?3400:hunterEscalation?2600:620,slotX=hunterEscalation?plane.x+12-i*65:plane.x-20-i*120;
+ for(let i=jets.length-1;i>=0;i--){const j=jets[i];j.age+=dt;const ace=j.ace&&hunterEscalation,speedCap=ace?1000:hunterEscalation?740:260,acc=ace?2400:hunterEscalation?1800:620,slotX=hunterEscalation?plane.x+12-i*65:plane.x-20-i*120;
   // Same gravity and flap impulse as the player; AI plans toward the next tower gap before pursuing the plane.
   j.think-=dt;j.flapCd-=dt;j.burst=Math.max(0,j.burst-dt);
   const gate=gates.find(g=>g.x+g.w>j.x+28),prec=!j.ace&&j.gp<2;
